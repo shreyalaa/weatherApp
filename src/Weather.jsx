@@ -11,21 +11,21 @@ const Weather = () =>
 
     useEffect(()=>{
         const fetchApi = async () =>{
-           const url = `http://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=0bba5690bcec675e822d025b13b3e9a9`
+           const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=0bba5690bcec675e822d025b13b3e9a9`
            const response = await fetch(url)
            const resJson = await response.json()
            setCity(resJson.main)
-           console.log(city)
+        
         }
         fetchApi()
-    } ,[ search])
+    } ,[search])
     return(
         <div>
         <div className = "weather">
       
         <h1 ><Button style= {{color:"blue" , backgroundColor:"lightblue", boxShadow:"4px 4px 4px blue",height:"2cm" ,width:"4cm"}}><CloudCircleIcon style = {{fontSize: "80px" }}/></Button> Weather app</h1>
       
-        <input type = "search"  onChange = {(event)=>{ setSearch(event.target.value) }} className = "input" placeholder = "enter the city"/>
+        <input value = {search} type = "search"  onChange = {(event)=>{ setSearch(event.target.value) }} className = "input" placeholder = "enter the city"/>
         
         {!city ? (<p>no data</p>):
             (
